@@ -30,6 +30,8 @@ gem 'rack-cors'
 gem 'fast_jsonapi'
 gem 'oj'
 gem 'jwt'
+gem "require_all"
+gem "rest-client"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

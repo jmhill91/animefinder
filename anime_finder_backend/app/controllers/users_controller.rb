@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all
+    render json: @users
+  end
+
   def create
     @user = User.create(user_params)
     if @user.valid?
@@ -10,6 +15,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password, :profile_picture)
+    params.permit(:username, :password_digest, :profile_picture)
   end
 end
