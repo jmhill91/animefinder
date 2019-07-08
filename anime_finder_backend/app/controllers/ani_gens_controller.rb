@@ -1,0 +1,2 @@
+class AniGensController < ApplicationController
+end
