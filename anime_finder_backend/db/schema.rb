@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 2019_07_08_144915) do
     t.string "watch_link"
     t.string "image"
     t.integer "rating"
+    t.string "start_date"
+    t.string "end_date"
+    t.string "tv_rating"
+    t.integer "episode_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
