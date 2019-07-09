@@ -15,7 +15,7 @@ const GENRESAPI = 'http://localhost:3000/genres'
 class App extends React.Component {
 
   state = {
-    userDetails: null,
+    username: null,
     genres: []
   }
 
