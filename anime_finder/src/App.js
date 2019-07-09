@@ -8,6 +8,7 @@ import {
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/SignupPage'
 import GenreList from './containers/GenreList'
+import ProfilePage from './components/ProfilePage'
 
 const GENRESAPI = 'http://localhost:3000/genres'
 
@@ -47,6 +48,7 @@ class App extends React.Component {
           </div>
           <div>
             <GenreList genres={this.state.genres}/>
+            <Route path="/profile" component={ProfilePage} />
           </div>
         </div>
 
