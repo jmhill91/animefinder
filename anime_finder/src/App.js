@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/SignupPage'
-import GenreList from './containers/GenreList'
+
 import ProfilePage from './components/ProfilePage'
 
 const GENRESAPI = 'http://localhost:3000/genres'
@@ -28,7 +28,6 @@ class App extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <Router>
         <div className="App">
@@ -44,11 +43,15 @@ class App extends React.Component {
             <br/>
             <br/>
             <Route path="/login" component={LoginPage} />
-            <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genres={this.state.genres} />} />
+            <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genresList={this.state.genres} />} />
           </div>
           <div>
+<<<<<<< HEAD
             <GenreList genres={this.state.genres}/>
             <Route path="/profile" component={ProfilePage} />
+=======
+            
+>>>>>>> signup-page
           </div>
         </div>
 

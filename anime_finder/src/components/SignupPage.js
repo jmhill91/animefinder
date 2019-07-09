@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import GenreList from '../containers/GenreList'
 
 export default class SignupPage extends Component {
 
@@ -7,6 +8,10 @@ export default class SignupPage extends Component {
     password: '',
     profilePicture: '',
     genreList: []
+  }
+
+  componentDidMount() {
+    this.setState({genreList: this.props.genresList})
   }
 
   handleOnChange = (e) => {
@@ -18,7 +23,6 @@ export default class SignupPage extends Component {
   }
 
   render() {
-    // <input type='checkbox' name='' /> Test
     return (
       <div className='signup'>
         <form>
@@ -28,7 +32,7 @@ export default class SignupPage extends Component {
           <br/>
           <input type='text' name='profile-picture' placeholder='URL to profile picture' value={this.state.profilePicture} onChange={this.handleProfilePictureChange}/>
           <br/>
-          <input type='checkbox' name='' /> Test
+          <GenreList genres={this.state.genreList}/>
           <br/>
           <input type='submit' value='Signup' />
         </form>
