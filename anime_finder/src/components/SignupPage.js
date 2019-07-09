@@ -14,6 +14,15 @@ export default class SignupPage extends Component {
     this.setState({genreList: this.props.genresList})
   }
 
+  handleAddGenre = (genre) => {
+    this.setState({genreList: [...this.state.genreList, genre]})
+  }
+
+  handleRemoveGenre = (genre) => {
+    let filterGenreList = this.state.genreList.filter(currentGenre => currentGenre !== genre)
+    this.setState({ genresList: filterGenreList})
+  }
+
   handleOnChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -30,8 +39,8 @@ export default class SignupPage extends Component {
     })
       .then(res => res.json())
       .then(parsedResponse => {
-        localStorage.setItem('token', parsedResponse.token) 
-        this.props.history.push('/')
+        localStorage.setItem('token', parsedResponse.token)
+        this.props.history.push('/profile')
       })
   }
 
@@ -46,7 +55,7 @@ export default class SignupPage extends Component {
           <br/>
           <input type='text' name='profile_picture' placeholder='URL to profile picture' onChange={this.handleOnChange}/>
           <br/>
-          <GenreList genres={this.state.genreList}/>
+          <GenreList addGenre={this.handleAddGenre} removeGenre={this.handleRemoveGenre} genres={this.state.genreList}/>
           <br/>
           <input type='submit' value='Signup' />
         </form>

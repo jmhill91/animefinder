@@ -20,7 +20,7 @@ export default class LoginPage extends Component {
     .then(res => res.json())
     .then(parsRes => {
       localStorage.setItem('token', parsRes.token)
-      this.props.history.push('/')
+      this.props.history.push('/profile')
     })
   }
 

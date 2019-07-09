@@ -15,8 +15,9 @@ const GENRESAPI = 'http://localhost:3000/genres'
 class App extends React.Component {
 
   state = {
-    userDetails: null,
-    genres: []
+    username: '',
+    genres: [],
+    profilePic: '',
   }
 
   componentDidMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
       .then(genres => {
         this.setState({genres: genres})
       })
+
       if (localStorage.token) {
         fetch('http://localhost:3000/profile', {
           headers: {
@@ -33,14 +35,16 @@ class App extends React.Component {
           }
         })
         .then(res => res.json())
-        .then(profileInfo => this.setState({ username: profileInfo.username }))
+        .then(profileInfo => {
+          this.setState({ username: profileInfo.username, profilePic: profileInfo.profile_picture })
+        })
       }
-      
+
   }
 
   handleLoginFormSubmit = (e, data) => {
     e.preventDefault()
-    
+
   }
 
   render() {
@@ -62,7 +66,7 @@ class App extends React.Component {
             <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genresList={this.state.genres} />} />
           </div>
           <div>
-            <Route path="/profile" component={ProfilePage} />
+            <Route path="/profile" render={(routerProps) => <ProfilePage {...routerProps} username={this.state.username} profilePic={this.state.profilePic} />} />
           </div>
         </div>
 

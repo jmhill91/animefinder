@@ -10,8 +10,8 @@ export default class ProfilePage extends Component {
   render() {
     return (
       <div className='Profile'>
-      <h1>Username</h1>
-      <img src="" alt="profile picture" />
+      <h1>{this.props.username}</h1>
+      <img src={this.props.profilePic} alt="profile picture" />
       <ul>
       <li>Favs</li>
       </ul>
