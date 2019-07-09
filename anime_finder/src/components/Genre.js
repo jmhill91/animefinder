@@ -1,12 +1,11 @@
 import React from 'react'
 
 export default class Genre extends React.Component {
-  debugger
   render() {
     return (
-      <div>
-        {this.props.genreData.genre_type}
-      </div>
+      <li>
+        <input type='checkbox' value={this.props.genreData.genre_type} />{this.props.genreData.genre_type}
+      </li>
     )
   }
 }
