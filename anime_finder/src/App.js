@@ -20,11 +20,27 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // debugger
     fetch(GENRESAPI)
       .then(resp => resp.json())
       .then(genres => {
         this.setState({genres: genres})
       })
+      if (localStorage.token) {
+        fetch('http://localhost:3000/profile', {
+          headers: {
+            Authorization: localStorage.token
+          }
+        })
+        .then(res => res.json())
+        .then(profileInfo => this.setState({ username: profileInfo.username }))
+      }
+      
+  }
+
+  handleLoginFormSubmit = (e, data) => {
+    e.preventDefault()
+    
   }
 
   render() {
@@ -42,7 +58,7 @@ class App extends React.Component {
             </button>
             <br/>
             <br/>
-            <Route path="/login" component={LoginPage} />
+            <Route path="/login" render={(routerProps) => <LoginPage {...routerProps} handleLoginFormSubmit={this.handleLoginFormSubmit} />} />
             <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genresList={this.state.genres} />} />
           </div>
           <div>
