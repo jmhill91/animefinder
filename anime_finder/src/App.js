@@ -42,11 +42,6 @@ class App extends React.Component {
 
   }
 
-  handleLoginFormSubmit = (e, data) => {
-    e.preventDefault()
-
-  }
-
   render() {
     return (
       <Router>
