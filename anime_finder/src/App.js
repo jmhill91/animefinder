@@ -1,16 +1,58 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink
+} from 'react-router-dom';
 import LoginPage from './components/LoginPage'
+import SignupPage from './components/SignupPage'
+import GenreList from './containers/GenreList'
 
-function App() {
+const GENRESAPI = 'http://localhost:3000/genres'
 
-  const [userDetails] = useState(null);
+class App extends React.Component {
 
-  return (
-    <div className="App">
-      <LoginPage />
-    </div>
-  );
+  state = {
+    userDetails: null,
+    genres: []
+  }
+
+  componentDidMount() {
+    fetch(GENRESAPI)
+      .then(resp => resp.json())
+      .then(genres => {
+        this.setState({genres: genres})
+      })
+  }
+
+  render() {
+    debugger
+    return (
+      <Router>
+        <div className="App">
+          <div>
+            <h1>WELCOME TO ANIME FINDER!</h1>
+            <h3>Please login or signup to continue.</h3>
+            <button >
+              <NavLink to="/signup" >Sign Up Now!</NavLink>
+            </button>
+            <button>
+              <NavLink to="/login" >Login Now!</NavLink>
+            </button>
+            <br/>
+            <br/>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genres={this.state.genres} />} />
+          </div>
+          <div>
+            <GenreList genres={this.state.genres}/>
+          </div>
+        </div>
+
+      </Router>
+    );
+  }
 }
 
 export default App;
