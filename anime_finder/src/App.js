@@ -46,12 +46,7 @@ class App extends React.Component {
             <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genresList={this.state.genres} />} />
           </div>
           <div>
-<<<<<<< HEAD
-            <GenreList genres={this.state.genres}/>
             <Route path="/profile" component={ProfilePage} />
-=======
-            
->>>>>>> signup-page
           </div>
         </div>
 
