@@ -1,11 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
+const FAVORITESAPI = 'http://localhost:3000/favorites'
 
 export default class AnimeShowPage extends React.Component {
+
+  handleClick = (e) => {
+    fetch(FAVORITESAPI, {
+      method: 'POST',
+      headers: {
+        'Authorization': localStorage.token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        anime_id: this.props.anime.id
+      })
+    })
+  }
+
   render() {
     return (
       <div>
-        <button>Profile</button>
-        <button>Search</button>
+        <Link to={`/profile`}>Profile</Link>
+        <Link to={`/search`}>Search</Link>
 
         <h1>Title: {this.props.anime.title}</h1>
         <img src={this.props.anime.image} alt='not found' />
@@ -17,7 +35,7 @@ export default class AnimeShowPage extends React.Component {
         <div>End Date: {this.props.anime.end_date}</div>
         <a href={this.props.anime.watch_link}>Watch Link</a>
 
-        <button>Favorite</button>
+        <button onClick={this.handleClick}>Favorite</button>
       </div>
     )
   }

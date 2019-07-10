@@ -27,16 +27,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(ANIMEAPI)
-      .then(resp => resp.json())
-      .then(animes => {
-        this.setState({ animes: animes })
-      })
-
     fetch(GENRESAPI)
       .then(resp => resp.json())
       .then(genres => {
         this.setState({ genres: genres })
+      })
+
+    fetch(ANIMEAPI)
+      .then(resp => resp.json())
+      .then(animes => {
+        this.setState({ animes: animes })
       })
 
     if (localStorage.token) {

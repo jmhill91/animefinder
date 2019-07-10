@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/profile", to: "users#profile"
   get "/anime-genres", to: "ani_gens#index"
+
+  resources :favorites, only: [:create, :index]
+
 end
