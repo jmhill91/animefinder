@@ -11,16 +11,27 @@ import SignupPage from './components/SignupPage'
 import ProfilePage from './components/ProfilePage'
 
 const GENRESAPI = 'http://localhost:3000/genres'
+const ANIMEAPI = 'http://localhost:3000/animes'
 
 class App extends React.Component {
 
   state = {
     username: '',
     genres: [],
-    profilePic: ''
+    profilePic: '',
+    animes: [],
+    genrePreferences: [],
+    currentAnime: {}
+
   }
 
   componentDidMount() {
+    fetch(ANIMEAPI)
+    .then(resp => resp.json())
+    .then(animes => {
+      this.setState({animes: animes})
+    })
+
     fetch(GENRESAPI)
       .then(resp => resp.json())
       .then(genres => {
@@ -35,9 +46,20 @@ class App extends React.Component {
         })
         .then(res => res.json())
         .then(profileInfo => {
-          this.setState({ username: profileInfo.username, profilePic: profileInfo.profile_picture })
+          let genreIdList = profileInfo.data.relationships.genres.data.map(genre => {
+            return genre.id
+          })
+          this.setState({ username: profileInfo.data.attributes.username, profilePic: profileInfo.data.attributes.profile_picture, genrePreferences: genreIdList
+ })
         })
       }
+  }
+
+
+
+
+  handleAimeShowPage = (event, data) => {
+    console.log(data);
   }
 
   render() {
@@ -59,7 +81,8 @@ class App extends React.Component {
             <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genresList={this.state.genres} />} />
           </div>
           <div>
-            <Route path="/profile" render={(routerProps) => <ProfilePage {...routerProps} username={this.state.username} profilePic={this.state.profilePic} />} />
+            <Route path="/profile"  render={(routerProps) => <ProfilePage {...routerProps} username={this.state.username} profilePic={this.state.profilePic} genrePreferences={this.state.genrePreferences} anime={this.state.animes}
+            showPage={this.handleAimeShowPage}/>} />
           </div>
         </div>
 
