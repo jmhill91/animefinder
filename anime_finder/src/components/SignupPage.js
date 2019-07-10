@@ -7,7 +7,8 @@ export default class SignupPage extends Component {
     username: '',
     password: '',
     profile_picture: '',
-    genreList: []
+    genreList: [],
+    genre_attributes: []
   }
 
   componentDidMount() {
@@ -15,12 +16,12 @@ export default class SignupPage extends Component {
   }
 
   handleAddGenre = (genre) => {
-    this.setState({genreList: [...this.state.genreList, genre]})
+    this.setState({genre_attributes: [...this.state.genre_attributes, genre]})
   }
 
   handleRemoveGenre = (genre) => {
-    let filterGenreList = this.state.genreList.filter(currentGenre => currentGenre !== genre)
-    this.setState({ genresList: filterGenreList})
+    let filterGenreList = this.state.genre_attributes.filter(currentGenre => currentGenre !== genre)
+    this.setState({ genre_attributes: filterGenreList})
   }
 
   handleOnChange = (e) => {
@@ -35,7 +36,12 @@ export default class SignupPage extends Component {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+        profile_picture: this.state.profile_picture,
+        genre_attributes: this.state.genre_attributes,
+      })
     })
       .then(res => res.json())
       .then(parsedResponse => {

@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.valid?
+      if params[:genre_attributes]
+        params[:genre_attributes].each do |genre_param|
+          @user.genres << Genre.find(genre_param[:id])
+        end
+      end
       render json: { token: encode_token(user_payload(@user)) }, status: :created
     else
       render json: { error: 'failed to create user' }, status: :not_acceptable
@@ -11,17 +16,15 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    render json: @users
+    render json: UserSerializer.new(@users)
   end
 
   def profile
-    render json: current_user
+    render json: UserSerializer.new(current_user)
   end
 
   private
   def user_params
-    params.permit(:username, :password, :profile_picture,
-      genre_attributes: [:id, :genre_type]
-    )
+    params.permit(:username, :password, :profile_picture)
   end
 end

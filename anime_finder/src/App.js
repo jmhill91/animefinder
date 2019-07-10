@@ -21,7 +21,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // debugger
     fetch(GENRESAPI)
       .then(resp => resp.json())
       .then(genres => {
@@ -39,7 +38,6 @@ class App extends React.Component {
           this.setState({ username: profileInfo.username, profilePic: profileInfo.profile_picture })
         })
       }
-
   }
 
   render() {

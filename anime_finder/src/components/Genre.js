@@ -1,15 +1,18 @@
 import React from 'react'
 
 export default class Genre extends React.Component {
-  state ={
-    picked: false
+  state = {
+    picked: true
   }
 
   handleSelected = (e) => {
-    this.setState({ picked: !this.state.picked})
+    this.setState({ 
+      picked: !this.state.picked 
+    })
+    console.log(this.state.picked)
     this.state.picked ? this.props.addGenre(this.props.genreData) : this.props.removeGenre(this.props.genreData)
   }
-
+  
   render() {
     return (
       <li>
