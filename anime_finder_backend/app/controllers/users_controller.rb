@@ -20,6 +20,8 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.permit(:username, :password, :profile_picture)
+    params.permit(:username, :password, :profile_picture,
+      genre_attributes: [:id, :genre_type]
+    )
   end
 end

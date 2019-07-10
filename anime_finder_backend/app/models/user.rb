@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :username, uniqueness: { case_sensitive: false}
+  
+  accepts_nested_attributes_for :genres, allow_destroy: true
 end
