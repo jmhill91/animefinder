@@ -25,6 +25,20 @@ export default class ProfilePage extends Component {
       })
   }
 
+  handleSignOut = () => {
+    localStorage.clear()
+    this.props.history.push('/')
+    this.setState({
+      usernameInput: '',
+      passwordInput: '',
+      filteredAnigens: [],
+      favoriteAnime: [],
+      username: '',
+      profilePic: '',
+      genrePreferences: [],
+      user_id: ''
+    })
+  }
 
   render() {
     if (localStorage.token) {
@@ -35,24 +49,28 @@ export default class ProfilePage extends Component {
       })
         .then(res => res.json())
         .then(profileInfo => {
-          this.setState({
-            currentUser: profileInfo
+          let genreIdList = profileInfo.data.relationships.genres.data.map(genre => {
+            return genre.id
           })
+          this.setState({
+            username: profileInfo.data.attributes.username, profilePic: profileInfo.data.attributes.profile_picture, genrePreferences: genreIdList, user_id: parseInt(profileInfo.data.id)
+          })
+          this.forceUpdate()
         })
     }
 
     return (
       <div className='Profile'>
-        <h1>{this.props.username}</h1>
-        <img src={this.props.profilePic} alt="profile pic" />
-        {this.props.user_id ?
-          <FavoriteAnime user_id={this.props.user_id} animes={this.props.anime} favorites={this.state.favoriteAnime} history={this.props.history} showPage={this.props.showPage}/>
+        <h1>{this.state.username}</h1>
+        <img src={this.state.profilePic} alt="profile pic" />
+        {this.state.user_id ?
+          <FavoriteAnime user_id={this.state.user_id} animes={this.props.anime} favorites={this.state.favoriteAnime} history={this.props.history} showPage={this.props.showPage}/>
           :
           null
         }
         <SuggestedAnime animes={this.props.anime} history={this.props.history} filteredAnigens={this.state.filteredAnigens} showPage={this.props.showPage} />
         <button>Search</button>
-        <button>Sign Out</button>
+        <button onClick={this.handleSignOut}>Sign Out</button>
 
       </div>
     )
