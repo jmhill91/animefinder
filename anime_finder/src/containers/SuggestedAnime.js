@@ -3,7 +3,8 @@ import AnimeCard from '../components/AnimeCard'
 
 class SuggestedAnime extends React.Component {
   state = {
-    index: 0
+    index: Math.floor(Math.random() * 1001),
+    dance: false
   }
 
   handleLess = () => {
@@ -12,6 +13,33 @@ class SuggestedAnime extends React.Component {
 
   handleMore = () => {
     this.setState({ index: this.state.index + 5 })
+  }
+
+  handleShuffle = () => {
+    this.setState({index: Math.floor(Math.random() * 1001)})
+  }
+
+  shuffle = (array) => {
+    let currentIndex = array.length, temporaryValue, randomIndex
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  dancePrettyBoy = () => {
+    this.setState({dance: !this.state.dance})
   }
 
   render() {
@@ -27,8 +55,10 @@ class SuggestedAnime extends React.Component {
       <div>
         <h4>Suggestions based on your Genres</h4>
         <button onClick={this.handleLess}>⬅️</button>
+        <button onClick={this.handleShuffle}>Mix it Up!</button>
+        <button onClick={this.dancePrettyBoy}>🕺🏻</button>
         <button onClick={this.handleMore}>➡️</button>
-        {spitOutAnimes.slice(this.state.index, (this.state.index + 5))}
+        {this.state.dance ? this.shuffle(spitOutAnimes.slice(this.state.index, (this.state.index + 5))) : spitOutAnimes.slice(this.state.index, (this.state.index + 5))}
       </div>
     )
   }

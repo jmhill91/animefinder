@@ -28,7 +28,7 @@ class FavoriteAnime extends React.Component {
     let foundAnime = this.props.animes.filter(anime => {
       return favesID.includes(anime.id)
     })
-    animeFavs = <div>{foundAnime.map(anime => <AnimeCard anime={anime} />)}</div>
+    animeFavs = <div>{foundAnime.map(anime => <AnimeCard history={this.props.history} anime={anime} key={anime.id} showPage={this.props.showPage}/>)}</div>
 
     return (
       <div>
