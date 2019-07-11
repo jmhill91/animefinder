@@ -4,12 +4,14 @@ import FavoriteAnime from '../containers/FavoriteAnime'
 
 const ANIGENSAPI = 'http://localhost:3000/anime-genres'
 
+
 export default class ProfilePage extends Component {
 
   state = {
     usernameInput: '',
     passwordInput: '',
-    filteredAnigens: []
+    filteredAnigens: [],
+    favoriteAnime: []
   }
 
   componentDidMount() {
@@ -22,12 +24,13 @@ export default class ProfilePage extends Component {
       })
   }
 
+
   render() {
     return (
       <div className='Profile'>
         <h1>{this.props.username}</h1>
         <img src={this.props.profilePic} alt="profile pic" />
-        <FavoriteAnime />
+        <FavoriteAnime user_id={this.props.user_id} animes={this.props.anime}/>
         <SuggestedAnime animes={this.props.anime} history={this.props.history} filteredAnigens={this.state.filteredAnigens} showPage={this.props.showPage} />
         <button>Search</button>
         <button>Sign Out</button>

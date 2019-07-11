@@ -7,7 +7,6 @@ export default class AnimeCard extends React.Component {
     this.props.history.push(`/anime/${this.props.anime.id}`)
   }
   render() {
-    console.log(this.props)
     return (
       <div onClick={this.handleClick}>
         <h1>{this.props.anime.title}</h1>

@@ -22,8 +22,8 @@ class App extends React.Component {
     profilePic: '',
     animes: [],
     genrePreferences: [],
-    currentAnime: {}
-
+    currentAnime: {},
+    user_id: 0
   }
 
   componentDidMount() {
@@ -51,7 +51,7 @@ class App extends React.Component {
             return genre.id
           })
           this.setState({
-            username: profileInfo.data.attributes.username, profilePic: profileInfo.data.attributes.profile_picture, genrePreferences: genreIdList
+            username: profileInfo.data.attributes.username, profilePic: profileInfo.data.attributes.profile_picture, genrePreferences: genreIdList, user_id: parseInt(profileInfo.data.id)
           })
         })
     }
@@ -84,8 +84,13 @@ class App extends React.Component {
             <Route path="/signup" render={(routerProps) => <SignupPage {...routerProps} genresList={this.state.genres} />} />
           </div>
           <div>
-            <Route path="/profile" render={(routerProps) => <ProfilePage {...routerProps} username={this.state.username} profilePic={this.state.profilePic} genrePreferences={this.state.genrePreferences} anime={this.state.animes}
-              showPage={this.handleAnimeShowPage} />} />
+            <Route path="/profile" render={(routerProps) => <ProfilePage {...routerProps} username={this.state.username}
+            profilePic={this.state.profilePic} genrePreferences={this.state.genrePreferences}
+            anime={this.state.animes}
+            showPage={this.handleAnimeShowPage}
+            user_id={this.state.user_id}/>} />
+
+
             <Route path={'/anime/:id'} render={(routerProps) => <AnimeShowPage {...routerProps} anime={this.state.currentAnime} />} />
           </div>
         </div>
