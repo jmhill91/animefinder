@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import SuggestedAnime from '../containers/SuggestedAnime'
 import FavoriteAnime from '../containers/FavoriteAnime'
+import SearchPage from '../components/SearchPage'
+import { Route } from 'react-router-dom';
 
 const ANIGENSAPI = 'http://localhost:3000/anime-genres'
 
@@ -24,6 +26,7 @@ export default class ProfilePage extends Component {
         this.setState({ filteredAnigens: filterArr })
       })
   }
+
 
   handleSignOut = () => {
     localStorage.clear()
@@ -69,8 +72,8 @@ export default class ProfilePage extends Component {
           null
         }
         <SuggestedAnime animes={this.props.anime} history={this.props.history} filteredAnigens={this.state.filteredAnigens} showPage={this.props.showPage} />
-        <button>Search</button>
         <button onClick={this.handleSignOut}>Sign Out</button>
+        <button><Route path='/search' render={(routerProps) => <SearchPage {...routerProps} animes={this.props.anime} showPage={this.props.showPage}/> }/> Search</button>
 
       </div>
     )
