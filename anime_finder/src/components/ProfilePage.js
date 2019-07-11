@@ -11,7 +11,8 @@ export default class ProfilePage extends Component {
     usernameInput: '',
     passwordInput: '',
     filteredAnigens: [],
-    favoriteAnime: []
+    favoriteAnime: [],
+    currentUser: {}
   }
 
   componentDidMount() {
@@ -26,6 +27,20 @@ export default class ProfilePage extends Component {
 
 
   render() {
+    if (localStorage.token) {
+      fetch('http://localhost:3000/profile', {
+        headers: {
+          Authorization: localStorage.token
+        }
+      })
+        .then(res => res.json())
+        .then(profileInfo => {
+          this.setState({
+            currentUser: profileInfo
+          })
+        })
+    }
+
     return (
       <div className='Profile'>
         <h1>{this.props.username}</h1>

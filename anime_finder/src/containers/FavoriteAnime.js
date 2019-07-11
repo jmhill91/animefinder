@@ -22,17 +22,12 @@ class FavoriteAnime extends React.Component {
 
   render() {
     let animeFavs = <div>Still Loading Favorites...</div>
-    console.log(this.state.foundFaves)
     let favesID = this.state.foundFaves.map(found => {
-      console.log(found)
-      debugger
       return found.anime_id
     })
-    console.log(favesID)
     let foundAnime = this.props.animes.filter(anime => {
       return favesID.includes(anime.id)
     })
-    console.log(foundAnime)
     animeFavs = <div>{foundAnime.map(anime => <AnimeCard anime={anime} />)}</div>
 
     return (
