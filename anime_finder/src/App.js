@@ -57,9 +57,6 @@ class App extends React.Component {
     }
   }
 
-
-
-
   handleAnimeShowPage = (event, data) => {
     console.log(data)
     this.setState({ currentAnime: data })
