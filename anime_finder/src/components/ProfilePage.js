@@ -30,7 +30,11 @@ export default class ProfilePage extends Component {
       <div className='Profile'>
         <h1>{this.props.username}</h1>
         <img src={this.props.profilePic} alt="profile pic" />
-        <FavoriteAnime user_id={this.props.user_id} animes={this.props.anime}/>
+        {this.props.user_id ?
+          <FavoriteAnime user_id={this.props.user_id} animes={this.props.anime} favorites={this.state.favoriteAnime} />
+          :
+          null
+        }
         <SuggestedAnime animes={this.props.anime} history={this.props.history} filteredAnigens={this.state.filteredAnigens} showPage={this.props.showPage} />
         <button>Search</button>
         <button>Sign Out</button>
