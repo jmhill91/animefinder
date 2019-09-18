@@ -13,8 +13,8 @@ Created at [Flatiron School](https://github.com/flatiron-school) by [Aaron Chu](
 - BCrypt
 - Fast JSON Api Serializer
 
-Q: How are you going to get the many thousand of anime titles for suggestions?
-A: We used an external database, Kitsu API, to populate the seed data of our app. 
+How are you going to get the many thousand of anime titles for suggestions?
+We used an external database, Kitsu API, to populate the seed data of our app. 
 
 How do you keep user information safe?
 We used BCrypt and JWT to secure our users profiles securely and keep them authenticated while they were logged in.
