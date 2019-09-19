@@ -13,14 +13,14 @@ Created at [Flatiron School](https://github.com/flatiron-school) by [Aaron Chu](
 - BCrypt
 - Fast JSON Api serializer
 
-#### How are you going to get the many thousand of anime titles for suggestions?
-We used an external database, Kitsu API, to populate the seed data of our app. 
+#### Q: How are you going to get the many thousand of anime titles for suggestions?
+A: We used an external database, Kitsu API, to populate the seed data of our app. 
 
-#### How do you keep user information safe?
-We used BCrypt and JWT to secure our users profiles securely and keep them authenticated while they were logged in.
+#### Q: How do you keep user information safe?
+A: We used BCrypt and JWT to secure our users profiles securely and keep them authenticated while they were logged in.
 
-#### How does the user navigate around the website?
-We used React-Router to provide endpoints that directed the user to different parts of the site.
+#### Q: How does the user navigate around the website?
+A: We used React-Router to provide endpoints that directed the user to different parts of the site.
 
 ## Challenges
 Working with KitsuAPI, which has a massive database, querying results was extremely time consuming. Therefore, there was a long buffer period when processing the filtered results due to the sheer size of the information. Also, the API design had key information saved in a multidimensional hash and due to this API design, the data we wanted was not in a single endpoint. Therefore we had to design our own relational database that connected the information together.
