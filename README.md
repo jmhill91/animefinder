@@ -35,4 +35,4 @@ There were many considerations for the problem of a snail-paced query. Therefore
 Other possible solutions for dealing with large amounts of data:
 - Use a different database management system
 - Elastic Search
-- Pagination during API design
+- Use of pagination in API design
