@@ -19,13 +19,13 @@ We used an external database, Kitsu API, to populate the seed data of our app.
 #### How do you keep user information safe?
 We used BCrypt and JWT to secure our users profiles securely and keep them authenticated while they were logged in.
 
-How does the user navigate around the website?
+#### How does the user navigate around the website?
 We used React-Router to provide endpoints that directed the user to different parts of the site.
 
 ## Challenges
 Working with KitsuAPI, which has a massive database, querying results was extremely time consuming. Therefore, there was a long buffer period when processing the filtered results due to the sheer size of the information. Also, the API design had key information saved in a multidimensional hash and due to this API design, the data we wanted was not in a single endpoint. Therefore we had to design our own relational database that connected the information together.
 
-Another challenge we faced was the time constraint to provide a MVP. Even with the deadline though, we were able to meet MVP and start to work on some of our future goals. These goals include…
+Another challenge we faced was the time constraint to provide a MVP. Even with the deadline though, we were able to meet MVP and start to work on some of our future goals. These goals include:
 - A Search feature where a User can search for specific anime
 - The User should be able to update their anime preferences
 - An updated UI design for the app to help with presentation 
