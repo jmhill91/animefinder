@@ -11,7 +11,7 @@ Created at [Flatiron School](https://github.com/flatiron-school) by [Aaron Chu](
 - React-Router
 - JWT
 - BCrypt
-- Fast JSON Api Serializer
+- Fast JSON Api serializer
 
 How are you going to get the many thousand of anime titles for suggestions?
 We used an external database, Kitsu API, to populate the seed data of our app. 
